@@ -23,7 +23,3 @@ Usecases:
 * Compter nos documents
 * Telecharger un document
 * Dupliquer un document
-<<<<<<< HEAD
-=======
-
->>>>>>> 4c956d88fa330109fb661991d2b6f62f31bac536
