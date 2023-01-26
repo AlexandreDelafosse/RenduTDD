@@ -8,9 +8,9 @@ Bareme:
 
 Usecases:
 
-* Voir la liste de nos documents
+# Voir la liste de nos documents 
 * Trier les documents
-* Rechercher un document (choisir les champs interessants, filtres ?)
+# Rechercher un document (choisir les champs interessants, filtres ?)
 * Rajouter un document
 * Supprimer un document
 * Renommer un document
