@@ -22,4 +22,9 @@ Usecases:
 * Envoyer un document
 * Compter nos documents
 * Telecharger un document
+<<<<<<< HEAD
 * Dupliquer un document
+=======
+* Dupliquer un document
+
+>>>>>>> cbebd56443cbd6d71954fbe1b744d9d2172ece53
