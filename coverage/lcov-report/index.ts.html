@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>21/21</span>
+                <span class='fraction'>26/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>8/8</span>
+                <span class='fraction'>9/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>17/17</span>
+                <span class='fraction'>21/21</span>
             </div>
         
             
@@ -99,27 +99,37 @@
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">32x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">61x</span>
+<span class="cline-any cline-yes">67x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">28x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">28x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -135,16 +145,26 @@
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export const deleteDoc = (docArray: Array&lt;any&gt;): Array&lt;any&gt; =&gt; {
     docArray = [];
     return docArray;
 };
 &nbsp;
-export const uploadDoc = (docArray: Array&lt;any&gt;, validType: Array&lt;string&gt;, newDoc: any): Array&lt;any&gt; =&gt; {    
+export const uploadDoc = (docArray: Array&lt;any&gt;, validType: Array&lt;string&gt;, newDoc: any): Array&lt;any&gt; =&gt; {
     if (
         isNaN(newDoc.id) ||
-        (typeof newDoc.name === 'string' &amp;&amp; newDoc.name.trim().length === 0) ||
-        (typeof newDoc.content === 'string' &amp;&amp; newDoc.name.trim().length === 0) ||
+        typeof newDoc.name !== 'string' || newDoc.name.trim().length === 0 ||
+        typeof newDoc.content !== 'string' || newDoc.name.trim().length === 0 ||
         validType.find(element =&gt; element === newDoc.type) === undefined
     ) {
         throw new TypeError();
@@ -158,7 +178,7 @@ export const countDoc = (docArray: Array&lt;any&gt;): number =&gt; {
     return docArray.length;
 }
 &nbsp;
-export const filterDocByName = (docArray: Array&lt;any&gt;, docName: string): Array&lt;any&gt; =&gt; {    
+export const filterDocByName = (docArray: Array&lt;any&gt;, docName: string): Array&lt;any&gt; =&gt; {
 &nbsp;
     let res: Array&lt;any&gt; = [];
 &nbsp;
@@ -171,14 +191,24 @@ export const filterDocByName = (docArray: Array&lt;any&gt;, docName: string): Ar
     return res;
 }
 &nbsp;
-&nbsp;</pre></td></tr></table></pre>
+export const renameDoc = (newNameDoc: any, newName: string): any =&gt; {
+    
+    if (
+        newName.trim().length !== 0
+    ) {
+&nbsp;
+        newNameDoc.name = newName;
+    }
+&nbsp;
+    return newNameDoc;
+}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-01-29T16:07:58.607Z
+                at 2023-01-29T17:16:53.296Z
             </div>
         <script src="prettify.js"></script>
         <script>

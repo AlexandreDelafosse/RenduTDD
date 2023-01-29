@@ -1,5 +1,5 @@
 import { jest } from "@jest/globals";
-import { deleteDoc, uploadDoc, filterDocByName, countDoc } from "./index";
+import { deleteDoc, uploadDoc, filterDocByName, countDoc, renameDoc } from "./index";
 
 const docBadId = {
     id: "hello",
@@ -9,7 +9,7 @@ const docBadId = {
 }
 const docBadName = {
     id: 1,
-    name: "",
+    name: 7,
     content: "jfcvguhbyijuopkl^^",
     type: "img"
 }
@@ -81,6 +81,9 @@ describe("upload file", () => {
     });
 
     it("should throw an error if the document is not valid", () => {
+
+    /* Pour tester un renvoie d'erreur la fonction doit etre mise dans une autre fonction fléchée */
+
         expect(() => uploadDoc(docArray, validTypes, docBadId)).toThrow(TypeError);
         expect(() => uploadDoc(docArray, validTypes, docBadName)).toThrow(TypeError);
         expect(() => uploadDoc(docArray, validTypes, docBadName2)).toThrow(TypeError);
@@ -127,7 +130,7 @@ describe("Filter documents", () => {
     });
 });
 
-describe("Compting documents", () => {
+describe("Counting documents", () => {
 
     it('Should return 5 when given 5 documents', () => {
 
@@ -142,9 +145,44 @@ describe("Compting documents", () => {
 
         expect(countDoc(docArray)).toEqual(5);
     });
+    
+    it('Should return 0 when given 4 invalid documents', () => {
+
+        let docArray: Array<any> = [];
+        let validTypes = ["text", "video", "img"];
+        
+        () => uploadDoc(docArray, validTypes, docBadId);
+        () => uploadDoc(docArray, validTypes, docBadName);
+        () => uploadDoc(docArray, validTypes, docBadName2);
+        () => uploadDoc(docArray, validTypes, docBadType);
+
+        expect(countDoc(docArray)).toEqual(0);
+    });
 });
 
+describe("Rename documents", () => {
 
+    let docArray: Array<any>;
+    let validTypes = ["text", "video", "img"];
+
+    beforeEach(() => {
+        docArray = deleteDoc(docArray);
+        uploadDoc(docArray, validTypes, doc1);
+    });
+
+    it('Should return document with the new name given ', () => {
+        expect(renameDoc(docArray[0], "theNewName")).toEqual({
+            id: 1,
+            name: "theNewName",
+            content: "jfcvguhbyijuopkl^^",
+            type: "img"
+        });
+    });
+
+    it("Should not change document's name if the new name is invalid", () => {
+        expect(renameDoc(docArray[0], "")).toEqual(doc1);
+    });
+});
 
 
 
