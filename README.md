@@ -1,3 +1,11 @@
+# LANCEMENT
+après avoir clone le projet faire un npm install
+pour lancer les test : ``` npm run test ```  
+pour lancer les test et la couverture de code : 
+``` npm run test:cov ```  
+pour lancer les test a chage sauvegarde de l'IDE : 
+``` npm run test:watch ```  
+
 # RenduTDD
 
 Bareme:
