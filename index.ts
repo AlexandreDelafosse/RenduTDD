@@ -17,8 +17,8 @@ export const uploadDoc = (docArray: Array<any>, validType: Array<string>, newDoc
     return docArray;
 }
 
-export const seeListDoc = (docArray: Array<any>): Array<any> => {
-    return docArray;
+export const countDoc = (docArray: Array<any>): number => {
+    return docArray.length;
 }
 
 export const filterDocByName = (docArray: Array<any>, docName: string): Array<any> => {    

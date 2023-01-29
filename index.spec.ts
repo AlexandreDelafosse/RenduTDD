@@ -1,5 +1,5 @@
 import { jest } from "@jest/globals";
-import { deleteDoc, uploadDoc, seeListDoc, filterDocByName } from "./index";
+import { deleteDoc, uploadDoc, filterDocByName, countDoc } from "./index";
 
 const docBadId = {
     id: "hello",
@@ -90,7 +90,7 @@ describe("upload file", () => {
 })
 
 describe("Filter documents", () => {
-    let docArray: Array<any>;    
+    let docArray: Array<any>;
     let validTypes = ["text", "video", "img"];
 
     beforeEach(() => {
@@ -99,7 +99,7 @@ describe("Filter documents", () => {
         uploadDoc(docArray, validTypes, doc2);
         uploadDoc(docArray, validTypes, doc3);
         uploadDoc(docArray, validTypes, doc33);
-        uploadDoc(docArray, validTypes, doc4);    
+        uploadDoc(docArray, validTypes, doc4);
     });
 
     it("Should  return [] if there's no document named monPrenom", () => {
@@ -127,6 +127,22 @@ describe("Filter documents", () => {
     });
 });
 
+describe("Compting documents", () => {
+
+    it('Should return 5 when given 5 documents', () => {
+
+        let docArray: Array<any> = [];
+        let validTypes = ["text", "video", "img"];
+
+        uploadDoc(docArray, validTypes, doc1);
+        uploadDoc(docArray, validTypes, doc2);
+        uploadDoc(docArray, validTypes, doc3);
+        uploadDoc(docArray, validTypes, doc33);
+        uploadDoc(docArray, validTypes, doc4);
+
+        expect(countDoc(docArray)).toEqual(5);
+    });
+});
 
 
 
