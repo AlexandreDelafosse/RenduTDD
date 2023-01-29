@@ -94,7 +94,7 @@ describe("Filter documents", () => {
     let validTypes = ["text", "video", "img"];
 
     beforeEach(() => {
-        deleteDoc(docArray);
+        docArray = deleteDoc(docArray);
         uploadDoc(docArray, validTypes, doc1);
         uploadDoc(docArray, validTypes, doc2);
         uploadDoc(docArray, validTypes, doc3);
