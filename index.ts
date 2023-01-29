@@ -1,12 +1,9 @@
-let docArray: Array<any> = [];
-let validType = ["text", "video", "img"];
-
-export const deleteDoc = (): Array<any> => {
+export const deleteDoc = (docArray: Array<any>): Array<any> => {
     docArray = [];
     return docArray;
 };
 
-export const uploadDoc = (newDoc: any): any => {
+export const uploadDoc = (docArray: Array<any>, validType: Array<string>, newDoc: any): Array<any> => {    
     if (
         isNaN(newDoc.id) ||
         (typeof newDoc.name === 'string' && newDoc.name.trim().length === 0) ||
@@ -17,15 +14,14 @@ export const uploadDoc = (newDoc: any): any => {
     }
     docArray.push(newDoc);
 
-    return newDoc;
-}
-
-export const seeListDoc = (docArray): Array<any> => {
     return docArray;
 }
 
-export const filterDocByName = (docName: string): Array<any> => {
-    console.log(docArray);    
+export const seeListDoc = (docArray: Array<any>): Array<any> => {
+    return docArray;
+}
+
+export const filterDocByName = (docArray: Array<any>, docName: string): Array<any> => {    
 
     let res: Array<any> = [];
 
@@ -37,6 +33,4 @@ export const filterDocByName = (docName: string): Array<any> => {
 
     return res;
 }
-
-// export const
 

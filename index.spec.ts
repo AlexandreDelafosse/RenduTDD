@@ -57,45 +57,56 @@ const doc4 = {
 };
 
 describe("delete all documents", () => {
-    it("Should remove every documents", () => {
-        expect(deleteDoc()).toEqual([]);
+    const docArray: Array<any> = [doc1, doc1, doc3];
+    it("Should return an empty array when given courses", () => {
+        expect(deleteDoc(docArray)).toEqual([]);
     });
 });
 
 describe("upload file", () => {
 
-    it("should upload a file", () => {
-        expect(uploadDoc(doc1)).toEqual(
-            {
-                id: 1,
-                name: "monNom1",
-                content: "jfcvguhbyijuopkl^^",
-                type: "img"
-            }
+    let validTypes = ["text", "video", "img"];
+    let docArray: Array<any>;
+
+    beforeEach(() => {
+        docArray = [doc2, doc3, doc4];
+
+    });
+
+    it("should retrun the docArray and the last element should be the new document", () => {
+
+        expect(uploadDoc(docArray, validTypes, doc1)[docArray.length - 1]).toEqual(
+            doc1
         )
     });
+
     it("should throw an error if the document is not valid", () => {
-        expect(() => uploadDoc(docBadId)).toThrow(TypeError);
-        expect(() => uploadDoc(docBadName)).toThrow(TypeError);
-        expect(() => uploadDoc(docBadName2)).toThrow(TypeError);
-        expect(() => uploadDoc(docBadType)).toThrow(TypeError);
+        expect(() => uploadDoc(docArray, validTypes, docBadId)).toThrow(TypeError);
+        expect(() => uploadDoc(docArray, validTypes, docBadName)).toThrow(TypeError);
+        expect(() => uploadDoc(docArray, validTypes, docBadName2)).toThrow(TypeError);
+        expect(() => uploadDoc(docArray, validTypes, docBadType)).toThrow(TypeError);
     });
 
 })
 
 describe("Filter documents", () => {
-    uploadDoc(doc1);
-    uploadDoc(doc2);
-    uploadDoc(doc3);
-    uploadDoc(doc33);
-    uploadDoc(doc4);
+    let docArray: Array<any>;    
+    let validTypes = ["text", "video", "img"];
 
+    beforeEach(() => {
+        deleteDoc(docArray);
+        uploadDoc(docArray, validTypes, doc1);
+        uploadDoc(docArray, validTypes, doc2);
+        uploadDoc(docArray, validTypes, doc3);
+        uploadDoc(docArray, validTypes, doc33);
+        uploadDoc(docArray, validTypes, doc4);    
+    });
 
-    xit("Should  return [] if there's no document named monPrenom", () => {
-        expect(filterDocByName('monPrenom')).toEqual([]);
+    it("Should  return [] if there's no document named monPrenom", () => {
+        expect(filterDocByName(docArray, 'monPrenom')).toEqual([]);
     });
     it("Should return one document named monNom1", () => {
-        expect(filterDocByName('monNom1')).toEqual([{
+        expect(filterDocByName(docArray, 'monNom1')).toEqual([{
             name: "monNom1",
             id: 1,
             content: "jfcvguhbyijuopkl^^",
@@ -103,31 +114,18 @@ describe("Filter documents", () => {
         }]);
     });
 
-    xit("Should return one document named monNom2", () => {
-        expect(filterDocByName('monNom2')).toEqual([{
+    it("Should return one document named monNom2", () => {
+        expect(filterDocByName(docArray, 'monNom2')).toEqual([{
             name: "monNom2",
             id: 2,
             content: "jfcvguhbyijuopkl^^",
             type: "img"
         }]);
     });
-    xit("Should return 2 documents named monNom3", () => {
-        expect(filterDocByName('monNom3').length).toEqual(2);
+    it("Should return array of 2 documents named monNom3", () => {
+        expect(filterDocByName(docArray, 'monNom3')).toEqual([doc3, doc33]);
     });
 });
-
-
-// describe("Show all documents", () => {
-//     xit("Should return all documents", () => {
-//         // expect(seeListDoc(docArray).length).toEqual(5);
-//     });
-// });
-
-// describe("Delete a document", () => {
-//     it("find the document named 'monNom4' by giving the id 4", () => {
-
-//     });
-// });
 
 
 
