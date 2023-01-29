@@ -1,4 +1,3 @@
-import { jest } from "@jest/globals";
 import { deleteDoc, uploadDoc, filterDocByName, countDoc, renameDoc } from "./index";
 
 const docBadId = {
@@ -58,7 +57,7 @@ const doc4 = {
 
 describe("delete all documents", () => {
     const docArray: Array<any> = [doc1, doc1, doc3];
-    it("Should return an empty array when given courses", () => {
+    it("Should return an empty array when given documents", () => {
         expect(deleteDoc(docArray)).toEqual([]);
     });
 });
@@ -73,7 +72,7 @@ describe("upload file", () => {
 
     });
 
-    it("should retrun the docArray and the last element should be the new document", () => {
+    it("should return the docArray and the last element should be the new document", () => {
 
         expect(uploadDoc(docArray, validTypes, doc1)[docArray.length - 1]).toEqual(
             doc1
@@ -131,11 +130,13 @@ describe("Filter documents", () => {
 });
 
 describe("Counting documents", () => {
+    let validTypes = ["text", "video", "img"];
+    let docArray: Array<any> = [];
+    beforeEach(() => {
+        docArray = deleteDoc(docArray);
+    });
 
     it('Should return 5 when given 5 documents', () => {
-
-        let docArray: Array<any> = [];
-        let validTypes = ["text", "video", "img"];
 
         uploadDoc(docArray, validTypes, doc1);
         uploadDoc(docArray, validTypes, doc2);
@@ -148,8 +149,6 @@ describe("Counting documents", () => {
     
     it('Should return 0 when given 4 invalid documents', () => {
 
-        let docArray: Array<any> = [];
-        let validTypes = ["text", "video", "img"];
         
         () => uploadDoc(docArray, validTypes, docBadId);
         () => uploadDoc(docArray, validTypes, docBadName);

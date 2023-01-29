@@ -1,26 +1,14 @@
 # RenduTDD
 
-Bareme:
+Pour installer le projet :
 
-* TDD -> 100% de code coverage
-* Est-ce que le code est necessaire ?
-* Coherence
+npm install
 
-Usecases:
-# Done
-* Voir la liste de nos documents 
-* Compter nos documents
-* Telecharger un document
-* Rechercher un document (choisir les champs interessants, filtres ?)
-* Renommer un document
-# Autres
-* Rajouter un document
-* Supprimer un document
-* Supprimer tous les documents
-* Archiver un document
-* Signer un document
-* Faire des dossiers (Ranger)
-* Deplacer un document
-* Envoyer un document
-* Dupliquer un document
-* Trier les documents
+Lancer les test : ``` npm run test ```
+Lancer la couverture de test : ``` npm run test:cov ```
+Lancer les test à chaque sauvegarde de l'IDE : ``` npm run test:watch ```
+
+* Alexandre Delafosse
+* Théodore Cadet
+* Mathis Rivière 
+* Théo Rossignol 
